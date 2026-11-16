@@ -23,7 +23,7 @@ const moduleD: ModuleManifest = {
 };
 
 describe('createModuleRegistry', () => {
-  it('with a new module manifest and no shell edit, lists its group and route first by order', () => {
+  it('AC-MC-1 with a new module manifest and no shell edit, lists its group and route first by order', () => {
     const registry = createModuleRegistry([reviewModule, moduleD]);
 
     const groups = registry.navGroups([OPERATOR]);
@@ -32,7 +32,7 @@ describe('createModuleRegistry', () => {
     expect(groups[0].items).toEqual([{ key: 'nav-module-d-module-d-home', label: 'Home', route: '/module-d/home' }]);
   });
 
-  it('with no role the module lists, hides the whole group', () => {
+  it('AC-MC-2 with no role the module lists, hides the whole group', () => {
     const registry = createModuleRegistry([reviewModule, moduleD]);
 
     const groups = registry.navGroups([REVIEWER]);
