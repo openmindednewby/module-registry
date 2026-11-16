@@ -143,3 +143,14 @@ describe('ModuleRegistry.routeAccess', () => {
     expect(access).toBe(RouteAccess.Denied);
   });
 });
+
+describe('ModuleRegistry.modules', () => {
+  it('with a manifest carrying an API client, keeps the client and its type', () => {
+    const client = { listItems: (): string[] => [] };
+    const registry = createModuleRegistry([{ ...moduleD, apiClient: client }]);
+
+    const kept: typeof client | undefined = registry.modules[0].apiClient;
+
+    expect(kept).toBe(client);
+  });
+});

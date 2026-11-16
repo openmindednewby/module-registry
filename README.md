@@ -21,3 +21,5 @@ registry.routeAccess('/reports', { loading, roles });
 - `canAccess`: a path matches its longest registered route on whole segments; an unregistered path is denied.
 - `routeAccess`: `RouteAccess.Loading` while the session loads with no roles, else Allowed or Denied.
 - A route with an empty `roles` list inherits the module's roles; a user sees a module only with one of its `roles`.
+
+`RouteAccess` is a runtime `enum`, not a `const enum`: an exported const enum fails with TS2748 in consumers built with `isolatedModules`.

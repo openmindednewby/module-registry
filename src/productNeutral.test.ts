@@ -2,6 +2,8 @@ import { readdirSync, readFileSync, statSync } from 'fs';
 import { join } from 'path';
 
 const PRODUCT_TERMS = new RegExp(`\\b(${['A' + 'ML', 'Proov' + 'ID', 'Ke' + 'fi', 'Zy' + 'gos'].join('|')})\\b`, 'i');
+const PACKAGE_ROOT = join(__dirname, '..');
+const SHIPPED_ROOT_FILES = ['README.md', 'CHANGELOG.md', 'package.json'];
 
 function sourceFiles(dir: string): string[] {
   return readdirSync(dir).flatMap((name) => {
@@ -24,12 +26,12 @@ describe('product neutrality', () => {
     expect(flagged).toEqual(['src/planted.ts']);
   });
 
-  it('with the shipped source, names no product', () => {
-    const files = sourceFiles(__dirname);
+  it('with the shipped source, README, CHANGELOG and package.json, names no product', () => {
+    const files = [...sourceFiles(__dirname), ...SHIPPED_ROOT_FILES.map((name) => join(PACKAGE_ROOT, name))];
 
     const flagged = filesNamingAProduct(files, (file) => readFileSync(file, 'utf8'));
 
-    expect(files.length).toBeGreaterThan(0);
+    expect(files.length).toBeGreaterThan(SHIPPED_ROOT_FILES.length);
     expect(flagged).toEqual([]);
   });
 });

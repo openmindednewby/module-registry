@@ -12,6 +12,7 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'error',
     'no-console': 'error',
     'eqeqeq': ['error', 'always'],
+    'no-restricted-syntax': ['error', { selector: 'TSEnumDeclaration:not([const=true])', message: 'Use const enum.' }],
   },
   ignorePatterns: ['dist/', 'node_modules/', '*.js', '**/*.test.ts'],
 };

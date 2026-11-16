@@ -5,8 +5,8 @@ import { canOpenRoute, hasAnyRole } from './roles';
 import { RouteAccess } from './RouteAccess';
 import { validateManifests } from './validateManifests';
 
-export interface ModuleRegistry {
-  readonly modules: readonly ModuleManifest[];
+export interface ModuleRegistry<TApiClient = unknown> {
+  readonly modules: readonly ModuleManifest<TApiClient>[];
   navGroups(userRoles: readonly string[]): ModuleNavGroup[];
   navItems(userRoles: readonly string[]): ModuleNavItem[];
   canAccess(path: string, userRoles: readonly string[]): boolean;
@@ -51,7 +51,9 @@ function isGroup(group: ModuleNavGroup | null): group is ModuleNavGroup {
 }
 
 /** Builds a registry; throws on a duplicate module id or route path. */
-export function createModuleRegistry(manifests: readonly ModuleManifest[]): ModuleRegistry {
+export function createModuleRegistry<TApiClient = unknown>(
+  manifests: readonly ModuleManifest<TApiClient>[],
+): ModuleRegistry<TApiClient> {
   validateManifests(manifests);
   const modules = [...manifests];
   const owned: OwnedRoute[] = modules.flatMap((manifest) =>
