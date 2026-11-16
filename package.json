@@ -1,26 +1,53 @@
 {
     "name": "@dloizides/module-registry",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Typed module manifests for a modular console shell: each module declares its nav group, routes and roles; the registry turns them into role-filtered nav groups and route access checks.",
-    "keywords": ["module", "registry", "navigation", "roles", "manifest", "dloizides"],
+    "keywords": [
+        "module",
+        "registry",
+        "navigation",
+        "roles",
+        "manifest",
+        "dloizides"
+    ],
     "author": "dloizides",
     "license": "MIT",
-    "repository": { "type": "git", "url": "https://github.com/openmindednewby/module-registry.git" },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/openmindednewby/module-registry.git"
+    },
     "homepage": "https://github.com/openmindednewby/module-registry#readme",
-    "bugs": { "url": "https://github.com/openmindednewby/module-registry/issues" },
+    "bugs": {
+        "url": "https://github.com/openmindednewby/module-registry/issues"
+    },
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
-            "require": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
-            "import": { "types": "./dist/index.d.mts", "default": "./dist/index.mjs" },
-            "default": { "types": "./dist/index.d.ts", "default": "./dist/index.js" }
+            "require": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
+            },
+            "import": {
+                "types": "./dist/index.d.mts",
+                "default": "./dist/index.mjs"
+            },
+            "default": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
+            }
         }
     },
-    "files": ["dist", "README.md", "CHANGELOG.md"],
+    "files": [
+        "dist",
+        "README.md",
+        "CHANGELOG.md"
+    ],
     "sideEffects": false,
-    "engines": { "node": ">=18.0.0" },
+    "engines": {
+        "node": ">=18.0.0"
+    },
     "scripts": {
         "build": "rimraf dist && tsup",
         "test": "jest",
